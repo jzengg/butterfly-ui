@@ -13,8 +13,6 @@ export default function Vote() {
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, []);
-//   const resetData = () => setData(null)
-
   const player = data?.player ?? {};
   const opponent = data?.opponent ?? {};
   return (
