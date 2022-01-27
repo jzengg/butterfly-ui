@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "../axiosUtils";
 import Candidate from "../components/Candidate.react";
-import { Center, SimpleGrid, Container, Image } from "@chakra-ui/react";
+import { Center, SimpleGrid, Container, Image, Flex, Heading } from "@chakra-ui/react";
 import { getMatchup } from "../apiUtils";
 
 export default function Vote() {
@@ -14,6 +14,8 @@ export default function Vote() {
   const player = data?.player ?? {};
   const opponent = data?.opponent ?? {};
   return (
+    <Flex alignItems="center" direction="column">
+    <Heading size="lg" mb={8}>Pick the one you like better</Heading>
     <SimpleGrid columns={2} spacing={100}>
       <Candidate
         refreshMatchup={refreshMatchup}
@@ -26,5 +28,6 @@ export default function Vote() {
         opponent={player}
       />
     </SimpleGrid>
+    </Flex>
   );
 }

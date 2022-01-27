@@ -3,6 +3,7 @@ import axios from "../axiosUtils";
 import Butterfly from "../components/Butterfly.react";
 import {
   Center,
+  Flex,
   Heading,
   OrderedList,
   ListItem,
@@ -24,6 +25,8 @@ export default function Leaderboard() {
   const butterflies = data?.leaderboard ?? [];
 
   return (
+        <Flex alignItems="center" direction="column">
+    <Heading size="lg" mb={8}>Leaderboard</Heading>
     <VStack>
       <OrderedList>
         {butterflies.map((butterfly, index) => (
@@ -40,5 +43,6 @@ export default function Leaderboard() {
         </Heading>
       </NextLink>
     </VStack>
+    </Flex>
   );
 }
