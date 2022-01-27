@@ -7,19 +7,22 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import VoteButton from "../components/VoteButton.react";
+import Butterfly from "../components/Butterfly.react";
 
 export default function Candidate({
-  player: { name, rating, image_url: imageUrl, id: playerId },
+  player,
   opponent: { id: opponentId },
-  refreshMatchup
+  refreshMatchup,
 }) {
+  const playerId = player.id;
   return (
     <VStack>
-      <Flex>Name: {name}</Flex>
-      <Flex>ID: {playerId}</Flex>
-      <Flex>Rating: {rating}</Flex>
-      <Image boxSize="400px" src={imageUrl} />
-      <VoteButton refreshMatchup={refreshMatchup} winnerId={playerId} loserId={opponentId}>
+      <Butterfly butterfly={player} />
+      <VoteButton
+        refreshMatchup={refreshMatchup}
+        winnerId={playerId}
+        loserId={opponentId}
+      >
         Vote
       </VoteButton>
     </VStack>
