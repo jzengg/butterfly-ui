@@ -14,19 +14,17 @@ export default function Vote() {
   const player = data?.player ?? {};
   const opponent = data?.opponent ?? {};
   return (
-    <Center>
-      <SimpleGrid columns={2} spacing={100}>
-        <Candidate
-          refreshMatchup={refreshMatchup}
-          player={player}
-          opponent={opponent}
-        />
-        <Candidate
-          refreshMatchup={refreshMatchup}
-          player={opponent}
-          opponent={player}
-        />
-      </SimpleGrid>
-    </Center>
+    <SimpleGrid columns={2} spacing={100}>
+      <Candidate
+        refreshMatchup={refreshMatchup}
+        player={player}
+        opponent={opponent}
+      />
+      <Candidate
+        refreshMatchup={refreshMatchup}
+        player={opponent}
+        opponent={player}
+      />
+    </SimpleGrid>
   );
 }
