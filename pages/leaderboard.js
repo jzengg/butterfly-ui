@@ -26,9 +26,14 @@ export default function Leaderboard() {
 
   return (
     <Flex alignItems="center" direction="column">
-      <Heading size="lg" mb={8}>
+      <Heading size="lg" mb={2}>
         Leaderboard
       </Heading>
+     <NextLink href="/vote" passHref={true}>
+          <Heading mb={4} size="md">
+            <Link color="teal.500">Start Voting</Link>
+          </Heading>
+        </NextLink>
       <VStack>
         <OrderedList>
           {butterflies.map((butterfly, index) => (
@@ -39,11 +44,6 @@ export default function Leaderboard() {
             </ListItem>
           ))}
         </OrderedList>
-        <NextLink href="/vote" passHref={true}>
-          <Heading>
-            <Link color="teal.500">Start Voting</Link>
-          </Heading>
-        </NextLink>
       </VStack>
     </Flex>
   );
