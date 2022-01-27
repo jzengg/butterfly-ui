@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
     <ChakraProvider>
       <Center p={4}>
         <VStack>
-          <Header  />
+          <Header />
           <Component {...pageProps} />
         </VStack>
       </Center>
