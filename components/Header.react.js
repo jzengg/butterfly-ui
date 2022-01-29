@@ -5,7 +5,8 @@ import { forwardRef } from "react";
 import { numVotesState } from "../atoms";
 import useSessionId from "../hooks/useSessionId";
 import { useRecoilValue } from "recoil";
-import { isDev, clearLocalStorage } from "../apiUtils";
+import { clearLocalStorage } from "../apiUtils";
+import useIsDev from "../hooks/useIsDev";
 
 export default function Header() {
   const sessionId = useSessionId();
@@ -15,6 +16,7 @@ export default function Header() {
     const color = router.asPath === href ? "teal.300" : "teal.600";
     return color;
   }
+  const isDev = useIsDev()
   return (
     <Flex direction="column" mb={4}>
       <HStack>
@@ -28,7 +30,7 @@ export default function Header() {
           <Link color={getColor("/leaderboard")}>Leaderboard</Link>
         </NextLink>
       </HStack>
-      {isDev() && (
+      {isDev && (
         <Flex mt={4} direction="column">
           <Text>Num Votes: {numVotes}</Text>
           <Text>Session ID: {sessionId}</Text>

@@ -25,18 +25,9 @@ export function getLeaderboard({ callback }) {
     url: "/api/leaderboard",
   })
     .then((response) => {
-      console.log(response);
       return callback(response.data);
     })
     .catch((error) => console.log(error));
-}
-
-export function isDev() {
-  if (typeof window !== "undefined") {
-    const value = localStorage.getItem("hotbutterfly-isdev");
-    return value === "true";
-  }
-  return false;
 }
 
 export function clearLocalStorage() {
