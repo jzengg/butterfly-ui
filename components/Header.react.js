@@ -42,3 +42,4 @@ const ActiveLink = forwardRef(({ onClick, href, children }, ref) => {
     </Link>
   );
 });
+ActiveLink.displayName = 'ActiveLink';

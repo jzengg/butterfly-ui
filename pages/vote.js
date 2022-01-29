@@ -35,7 +35,7 @@ export default function Vote() {
       });
     }
     getMatchup(setData);
-  });
+  }, [shouldShowToast, newNumVotes, toast]);
 
   const player = data?.player ?? {};
   const opponent = data?.opponent ?? {};
