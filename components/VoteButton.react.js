@@ -1,24 +1,13 @@
-import {
-  VStack,
-  Center,
-  Button,
-  Container,
-  Image,
-  Flex,
-} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import axios from "../axiosUtils";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { v4 as uuidv4 } from "uuid";
+import useSessionId from "../hooks/useSessionId";
+import { numVotesState } from "../atoms";
+import { useRecoilState } from "recoil";
 
 export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
-   const [sessionId, _] = useLocalStorage({
-      key: "hotbutterfly-sessionid",
-      defaultValue: uuidv4(),
-    });
-    const [numVotes, setNumVotes] = useLocalStorage({
-      key: "hotbutterfly-numvotes",
-      defaultValue: 0,
-    });
+  const [sessionId] = useSessionId();
+  const [numVotes, setNumVotes] = useRecoilState(numVotesState);
+
   const handleVote = () => {
     const response = axios({
       method: "post",
@@ -30,8 +19,8 @@ export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
       url: "/match_result",
     })
       .then((response) => {
-        refreshMatchup();
         setNumVotes(numVotes + 1);
+        refreshMatchup();
       })
       .catch((error) => console.log(error));
   };

@@ -8,15 +8,34 @@ import {
   Image,
   Flex,
   Heading,
+  useToast,
 } from "@chakra-ui/react";
 import { getMatchup } from "../apiUtils";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { numVotesState } from "../atoms";
 
 export default function Vote() {
   const [data, setData] = useState();
   useEffect(() => {
     getMatchup(setData);
   }, []);
-  const refreshMatchup = useCallback(() => getMatchup(setData));
+
+  const newNumVotes = useRecoilValue(numVotesState) + 1;
+  const toast = useToast();
+  const shouldShowToast = newNumVotes > 0 && newNumVotes % 10 === 0;
+
+  const refreshMatchup = useCallback(() => {
+    if (shouldShowToast) {
+      toast({
+        title: "Thank you!",
+        description: `Thanks for voting ${newNumVotes} times!`,
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    getMatchup(setData);
+  });
 
   const player = data?.player ?? {};
   const opponent = data?.opponent ?? {};
