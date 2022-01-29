@@ -1,9 +1,15 @@
-import { Flex, Heading, Link, HStack, Text } from "@chakra-ui/react";
+import { Flex, Heading, Link, HStack, Text, Button } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { forwardRef } from "react";
+import { numVotesState } from "../atoms";
+import useSessionId from "../hooks/useSessionId";
+import { useRecoilValue } from "recoil";
+import { isDev, clearLocalStorage } from "../apiUtils";
 
 export default function Header() {
+  const sessionId = useSessionId();
+  const numVotes = useRecoilValue(numVotesState);
   return (
     <Flex direction="column" mb={4}>
       <HStack>
@@ -17,6 +23,13 @@ export default function Header() {
           <ActiveLink>Leaderboard</ActiveLink>
         </NextLink>
       </HStack>
+      {isDev() && (
+        <Flex mt={4} direction="column">
+          <Text>Num Votes: {numVotes}</Text>
+          <Text>Session ID: {sessionId}</Text>
+          <Button width="50px" size="xs" onClick={clearLocalStorage}>Reset</Button>
+        </Flex>
+      )}
     </Flex>
   );
 }

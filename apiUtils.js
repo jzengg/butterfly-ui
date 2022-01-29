@@ -17,3 +17,16 @@ export function getLeaderboard(handler) {
     .then((response) => handler(response.data))
     .catch((error) => console.log(error));
 }
+
+export function isDev() {
+  if (typeof window !== "undefined") {
+    const value = localStorage.getItem("hotbutterfly-isdev");
+    return value === 'true';
+  }
+  return false;
+}
+
+export function clearLocalStorage() {
+  localStorage.removeItem('hotbutterfly-sessionid')
+  localStorage.removeItem('hotbutterfly-numvotes')
+}
