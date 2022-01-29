@@ -29,11 +29,11 @@ export default function Leaderboard() {
       <Heading size="lg" mb={2}>
         Leaderboard
       </Heading>
-     <NextLink href="/vote" passHref={true}>
-          <Heading mb={4} size="md">
-            <Link color="teal.500">Start Voting</Link>
-          </Heading>
-        </NextLink>
+      <NextLink href="/vote" passHref={true}>
+        <Heading mb={4} size="md">
+          <Link color="teal.500">Start Voting</Link>
+        </Heading>
+      </NextLink>
       <VStack>
         <OrderedList>
           {butterflies.map((butterfly, index) => (

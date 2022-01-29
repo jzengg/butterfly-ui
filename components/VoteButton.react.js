@@ -7,11 +7,19 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import axios from "../axiosUtils";
-import { v4 as uuidv4 } from 'uuid';
+import useLocalStorage from "../hooks/useLocalStorage";
+import { v4 as uuidv4 } from "uuid";
 
 export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
+   const [sessionId, _] = useLocalStorage({
+      key: "hotbutterfly-sessionid",
+      defaultValue: uuidv4(),
+    });
+    const [numVotes, setNumVotes] = useLocalStorage({
+      key: "hotbutterfly-numvotes",
+      defaultValue: 0,
+    });
   const handleVote = () => {
-    const sessionId = uuidv4()
     const response = axios({
       method: "post",
       data: {
@@ -23,6 +31,7 @@ export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
     })
       .then((response) => {
         refreshMatchup();
+        setNumVotes(numVotes + 1);
       })
       .catch((error) => console.log(error));
   };
