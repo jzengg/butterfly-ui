@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "../axiosUtils";
 import Candidate from "../components/Candidate.react";
 import {
   Center,
@@ -17,7 +16,7 @@ import { numVotesState } from "../atoms";
 export default function Vote() {
   const [data, setData] = useState();
   useEffect(() => {
-    getMatchup(setData);
+    getMatchup({ callback: setData });
   }, []);
 
   const newNumVotes = useRecoilValue(numVotesState) + 1;
@@ -34,7 +33,7 @@ export default function Vote() {
         isClosable: true,
       });
     }
-    getMatchup(setData);
+    getMatchup({ callback: setData });
   }, [shouldShowToast, newNumVotes, toast]);
 
   const player = data?.player ?? {};

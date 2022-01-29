@@ -1,28 +1,25 @@
 import { Button } from "@chakra-ui/react";
-import axios from "../axiosUtils";
 import useSessionId from "../hooks/useSessionId";
 import { numVotesState } from "../atoms";
 import { useRecoilState } from "recoil";
+import { createMatchupResult } from "../apiUtils";
 
 export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
   const [sessionId] = useSessionId();
   const [numVotes, setNumVotes] = useRecoilState(numVotesState);
 
   const handleVote = () => {
-    const response = axios({
-      method: "post",
+    createMatchupResult({
       data: {
         winner_id: winnerId,
         loser_id: loserId,
         session_id: sessionId,
       },
-      url: "/match_result",
-    })
-      .then((response) => {
+      callback: () => {
         setNumVotes(numVotes + 1);
         refreshMatchup();
-      })
-      .catch((error) => console.log(error));
+      },
+    });
   };
 
   return (

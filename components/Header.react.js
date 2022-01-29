@@ -10,36 +10,33 @@ import { isDev, clearLocalStorage } from "../apiUtils";
 export default function Header() {
   const sessionId = useSessionId();
   const numVotes = useRecoilValue(numVotesState);
+  const router = useRouter();
+  function getColor(href) {
+    const color = router.asPath === href ? "teal.300" : "teal.600";
+    return color;
+  }
   return (
     <Flex direction="column" mb={4}>
       <HStack>
         <NextLink href="/" passHref={true}>
-          <ActiveLink>Home</ActiveLink>
+          <Link color={getColor("/")}>Home</Link>
         </NextLink>
         <NextLink href="/vote" passHref={true}>
-          <ActiveLink>Vote</ActiveLink>
+          <Link color={getColor("/vote")}>Vote</Link>
         </NextLink>
         <NextLink href="/leaderboard" passHref={true}>
-          <ActiveLink>Leaderboard</ActiveLink>
+          <Link color={getColor("/leaderboard")}>Leaderboard</Link>
         </NextLink>
       </HStack>
       {isDev() && (
         <Flex mt={4} direction="column">
           <Text>Num Votes: {numVotes}</Text>
           <Text>Session ID: {sessionId}</Text>
-          <Button width="50px" size="xs" onClick={clearLocalStorage}>Reset</Button>
+          <Button width="50px" size="xs" onClick={clearLocalStorage}>
+            Reset
+          </Button>
         </Flex>
       )}
     </Flex>
   );
 }
-const ActiveLink = forwardRef(({ onClick, href, children }, ref) => {
-  const router = useRouter();
-  const color = router.asPath === href ? "teal.300" : "teal.600";
-  return (
-    <Link href={href} color={color}>
-      {children}
-    </Link>
-  );
-});
-ActiveLink.displayName = 'ActiveLink';

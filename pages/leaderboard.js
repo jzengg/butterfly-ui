@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "../axiosUtils";
 import Butterfly from "../components/Butterfly.react";
 import {
   Center,
@@ -20,7 +19,7 @@ import NextLink from "next/link";
 export default function Leaderboard() {
   const [data, setData] = useState();
   useEffect(() => {
-    getLeaderboard(setData);
+    getLeaderboard({ callback: setData });
   }, []);
   const butterflies = data?.leaderboard ?? [];
 
