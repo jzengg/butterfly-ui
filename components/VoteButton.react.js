@@ -7,24 +7,17 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import axios from "../axiosUtils";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
   const handleVote = () => {
-    let voterIp = "";
-    // const ipResponse = axios
-    //   .get(
-    //     "https://app.cors.bridged.cc/http://api.ipify.org/?format=json"
-    //   )
-    //   .then((response) => {
-    //       voterIp = response.data.ip
-    //       console.log(response.data.ip)
-    //   });
+    const sessionId = uuidv4()
     const response = axios({
       method: "post",
       data: {
         winner_id: winnerId,
         loser_id: loserId,
-        voter_ip: voterIp,
+        session_id: sessionId,
       },
       url: "/match_result",
     })
