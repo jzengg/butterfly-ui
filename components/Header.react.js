@@ -1,6 +1,7 @@
 import { Flex, Heading, Link, HStack, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { forwardRef } from "react";
 
 export default function Header() {
   return (
@@ -19,8 +20,7 @@ export default function Header() {
     </Flex>
   );
 }
-
-function ActiveLink({ children, href }) {
+const ActiveLink = forwardRef(({ onClick, href, children }, ref) => {
   const router = useRouter();
   const color = router.asPath === href ? "teal.300" : "teal.600";
   return (
@@ -28,4 +28,4 @@ function ActiveLink({ children, href }) {
       {children}
     </Link>
   );
-}
+});
