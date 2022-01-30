@@ -30,6 +30,17 @@ export function getLeaderboard({ callback }) {
     .catch((error) => console.log(error));
 }
 
+export function getMatches({ callback }) {
+  const response = axios({
+    method: "get",
+    url: "/api/matches",
+  })
+    .then((response) => {
+      return callback(response.data);
+    })
+    .catch((error) => console.log(error));
+}
+
 export function clearLocalStorage() {
   localStorage.removeItem("hotbutterfly-sessionid");
   localStorage.removeItem("hotbutterfly-numvotes");
