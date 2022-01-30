@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Match from "../components/Match.react";
+import useIsDev from "../hooks/useIsDev";
 import {
   Center,
   Flex,
@@ -14,7 +15,6 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { getMatches } from "../apiUtils";
-import NextLink from "next/link";
 
 export default function Matches() {
   const [data, setData] = useState();
@@ -22,6 +22,10 @@ export default function Matches() {
     getMatches({ callback: setData });
   }, []);
   const matches = data?.matches ?? [];
+  const isDev = useIsDev();
+  if (!isDev) {
+    return null;
+  }
 
   return (
     <Flex alignItems="center" direction="column">

@@ -9,7 +9,7 @@ export default function Butterfly({
   return (
     <>
       <Image boxSize={`${imgSize}px`} src={imageUrl} />
-      <Flex>Name: {name}</Flex>
+      <Flex>{name}</Flex>
       {isDev && (
         <>
           <Flex>ID: {id}</Flex>

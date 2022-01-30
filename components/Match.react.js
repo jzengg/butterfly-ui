@@ -1,21 +1,15 @@
 import Butterfly from "../components/Butterfly.react";
 import {
-  Center,
   Flex,
-  Heading,
-  OrderedList,
-  ListItem,
+  Tag,
   Image,
   StatHelpText,
   StatLabel,
   StatNumber,
   StatArrow,
-  StackDivider,
-  Box,
   Text,
   VStack,
   HStack,
-  Link,
   Stat,
 } from "@chakra-ui/react";
 
@@ -34,13 +28,14 @@ export default function Match({
   const eloGain = winnerFinalRating - winnerInitialRating;
   const eloLoss = loserInitialRating - loserFinalRating;
   return (
-      <VStack>
-        <VStack>
-      <Text>{timestamp}</Text>
-      <Text>{sessionId}</Text>
-      </VStack>
-      <HStack>
-
+    <VStack>
+      <Flex>
+        <Text color="gray.500" mr={1}>
+          {timestamp}
+        </Text>
+        <Tag>{sessionId}</Tag>
+      </Flex>
+      <HStack spacing="100px">
         <HStack>
           <Butterfly imgSize={50} butterfly={winner} />
           <Stat>
@@ -64,6 +59,6 @@ export default function Match({
           </Stat>
         </HStack>
       </HStack>
-      </VStack>
+    </VStack>
   );
 }
