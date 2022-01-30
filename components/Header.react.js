@@ -16,18 +16,15 @@ export default function Header() {
     const color = router.asPath === href ? "teal.300" : "teal.600";
     return color;
   }
-  const isDev = useIsDev()
+  const isDev = useIsDev();
   return (
-    <Flex direction="column" mb={4}>
+    <Flex direction="column">
       <HStack>
         <NextLink href="/" passHref={true}>
           <Link color={getColor("/")}>Home</Link>
         </NextLink>
         <NextLink href="/vote" passHref={true}>
           <Link color={getColor("/vote")}>Vote</Link>
-        </NextLink>
-        <NextLink href="/leaderboard" passHref={true}>
-          <Link color={getColor("/leaderboard")}>Leaderboard</Link>
         </NextLink>
       </HStack>
       {isDev && (

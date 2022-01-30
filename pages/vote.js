@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Candidate from "../components/Candidate.react";
+import VoteProgress from "../components/VoteProgress.react";
 import {
   Center,
   SimpleGrid,
@@ -21,12 +22,11 @@ export default function Vote() {
 
   const newNumVotes = useRecoilValue(numVotesState) + 1;
   const toast = useToast();
-  const shouldShowToast = newNumVotes > 0 && newNumVotes % 10 === 0;
 
   const refreshMatchup = useCallback(() => {
-    if (shouldShowToast) {
+    if (shouldShowToast(newNumVotes)) {
       toast({
-        title: "Thank you!",
+        title: getToastTitle(newNumVotes),
         description: `Thanks for voting ${newNumVotes} times!`,
         status: "success",
         duration: 5000,
@@ -40,10 +40,9 @@ export default function Vote() {
   const opponent = data?.opponent ?? {};
   return (
     <Flex alignItems="center" direction="column">
-      <Heading size="lg" mb={8}>
-        Pick the one you like better
-      </Heading>
-      <SimpleGrid columns={2} spacing={100}>
+      <VoteProgress />
+      <Heading size="lg">Pick the one you like better</Heading>
+      <SimpleGrid mt={2} columns={2} spacing={100}>
         <Candidate
           refreshMatchup={refreshMatchup}
           player={player}
@@ -57,4 +56,22 @@ export default function Vote() {
       </SimpleGrid>
     </Flex>
   );
+}
+
+function shouldShowToast(numVotes) {
+  if (numVotes === 0) {
+    return false;
+  }
+  if (numVotes <= 30) {
+    return numVotes % 10 === 0;
+  } else {
+    return numVotes % 50 === 0;
+  }
+}
+
+function getToastTitle(numVotes) {
+  if (numVotes < 50) {
+    return "Thank you!";
+  }
+  return "Amazing!";
 }

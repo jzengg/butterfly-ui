@@ -5,7 +5,7 @@ export default function Butterfly({
   butterfly: { name, rating, image_url: imageUrl, id },
   imgSize = 400,
 }) {
-    const isDev = useIsDev()
+  const isDev = useIsDev();
   return (
     <>
       <Image boxSize={`${imgSize}px`} src={imageUrl} />

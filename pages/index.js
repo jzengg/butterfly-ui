@@ -14,11 +14,6 @@ export default function Home() {
             <Link color="teal.500">Start Voting</Link>
           </Heading>
         </NextLink>
-        <NextLink href="/leaderboard" passHref={true}>
-          <Heading size="md">
-            <Link color="teal.500">Check the leaderboard</Link>
-          </Heading>
-        </NextLink>
       </HStack>
     </Container>
   );

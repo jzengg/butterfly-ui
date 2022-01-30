@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import Header from "../components/Header.react";
-import { Center, VStack } from "@chakra-ui/react";
+import { Center, VStack, Divider } from "@chakra-ui/react";
 import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }) {
@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
         <Center p={4}>
           <VStack>
             <Header />
+            <Divider orientation="horizontal" />
             <Component {...pageProps} />
           </VStack>
         </Center>
