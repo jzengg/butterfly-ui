@@ -10,7 +10,7 @@ export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
 
   const handleVote = () => {
     getIp({
-      callback: ({geoplugin_city: city, geoplugin_countryName: country, geoplugin_regionName: region, geoplugin_request: voter_ip}) => {
+      callback: ({ city,  country,  region, ip: voter_ip}) => {
         createMatchupResult({
           data: {
             winner_id: winnerId,
