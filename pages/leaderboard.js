@@ -37,8 +37,8 @@ export default function Leaderboard() {
         <OrderedList>
           {butterflies.map((butterfly, index) => (
             <ListItem key={index}>
-              <HStack p={5} spacing={50}>
-                <Butterfly butterfly={butterfly} imgSize={100} />
+              <HStack p={5} spacing={[10, 20, 30, 50]}>
+                <Butterfly butterfly={butterfly} imgSize={200} />
               </HStack>
             </ListItem>
           ))}
