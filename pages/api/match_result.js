@@ -14,7 +14,7 @@ export default async (req, res) => {
       voter_ip,
       city,
       country,
-      region
+      region,
     });
     return res.status(200).json(response.data);
   }

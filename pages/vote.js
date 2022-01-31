@@ -42,7 +42,7 @@ export default function Vote() {
     <Flex alignItems="center" direction="column">
       <VoteProgress />
       <Heading size="lg">Pick the one you like better</Heading>
-      <SimpleGrid mt={2} columns={2} spacing={100}>
+      <SimpleGrid mt={2} columns={2} spacing={[10, 20, 50, 100]}>
         <Candidate
           refreshMatchup={refreshMatchup}
           player={player}

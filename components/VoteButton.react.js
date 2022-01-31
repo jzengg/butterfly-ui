@@ -10,7 +10,7 @@ export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
 
   const handleVote = () => {
     getIp({
-      callback: ({ city,  country,  region, ip: voter_ip}) => {
+      callback: ({ city, country, region, ip: voter_ip }) => {
         createMatchupResult({
           data: {
             winner_id: winnerId,
@@ -19,7 +19,7 @@ export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
             voter_ip,
             city,
             country,
-            region
+            region,
           },
           callback: () => {
             setNumVotes(numVotes + 1);

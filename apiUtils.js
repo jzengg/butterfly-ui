@@ -41,7 +41,7 @@ export function getMatches({ callback }) {
     .catch((error) => console.log(error));
 }
 
-export function getIp({callback}) {
+export function getIp({ callback }) {
   const response = axios({
     method: "get",
     url: "/api/getip",

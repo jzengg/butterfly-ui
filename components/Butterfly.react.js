@@ -8,7 +8,10 @@ export default function Butterfly({
   const isDev = useIsDev();
   return (
     <>
-      <Image boxSize={`${imgSize}px`} src={imageUrl} />
+      <Image
+        boxSize={[imgSize / 2.7, imgSize / 2.5, imgSize / 2, imgSize]}
+        src={imageUrl}
+      />
       <Flex>{name}</Flex>
       {isDev && (
         <>

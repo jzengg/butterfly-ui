@@ -38,11 +38,11 @@ export default function Match({
           {timestamp}
         </Text>
         <HStack spacing={2}>
-        <Tag>{sessionId}</Tag>
-        <Tag>{voterIp}</Tag>
-        <Tag>{city}</Tag>
-        <Tag>{region}</Tag>
-        <Tag>{country}</Tag>
+          <Tag>{sessionId}</Tag>
+          <Tag>{voterIp}</Tag>
+          <Tag>{city}</Tag>
+          <Tag>{region}</Tag>
+          <Tag>{country}</Tag>
         </HStack>
       </Flex>
       <HStack spacing="100px">
