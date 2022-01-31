@@ -41,6 +41,17 @@ export function getMatches({ callback }) {
     .catch((error) => console.log(error));
 }
 
+export function getIp({callback}) {
+  const response = axios({
+    method: "get",
+    url: "/api/getip",
+  })
+    .then((response) => {
+      return callback(response.data);
+    })
+    .catch((error) => console.log(error));
+}
+
 export function clearLocalStorage() {
   localStorage.removeItem("hotbutterfly-sessionid");
   localStorage.removeItem("hotbutterfly-numvotes");
