@@ -6,7 +6,7 @@ export default async (req, res) => {
     body: { winner_id, loser_id, session_id, voter_ip, city, country, region },
   } = req;
   if (req.method === "POST") {
-    const URL = `${process.env.API_BASE_URL}/match_result?apikey=${process.env.API_KEY}`;
+    const URL = `${process.env.API_BASE_URL}:${process.env.API_PORT}/match_result?apikey=${process.env.API_KEY}`;
     const response = await axios.post(URL, {
       winner_id,
       loser_id,
