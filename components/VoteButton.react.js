@@ -4,7 +4,12 @@ import { numVotesState } from "../atoms";
 import { useRecoilState } from "recoil";
 import { createMatchupResult, getIp } from "../apiUtils";
 
-export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
+export default function VoteButton({
+  winnerId,
+  loserId,
+  refreshMatchup,
+  position,
+}) {
   const [sessionId] = useSessionId();
   const [numVotes, setNumVotes] = useRecoilState(numVotesState);
 
@@ -16,6 +21,7 @@ export default function VoteButton({ winnerId, loserId, refreshMatchup }) {
             winner_id: winnerId,
             loser_id: loserId,
             session_id: sessionId,
+            position,
             voter_ip,
             city,
             country,

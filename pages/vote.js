@@ -44,11 +44,13 @@ export default function Vote() {
       <Heading size="lg">Pick the one you like better</Heading>
       <SimpleGrid mt={2} columns={2} spacing={[10, 20, 50, 100]}>
         <Candidate
+          position={0}
           refreshMatchup={refreshMatchup}
           player={player}
           opponent={opponent}
         />
         <Candidate
+          position={1}
           refreshMatchup={refreshMatchup}
           player={opponent}
           opponent={player}

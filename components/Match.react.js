@@ -12,6 +12,7 @@ import {
   HStack,
   Stat,
 } from "@chakra-ui/react";
+import { ArrowRightIcon, ArrowLeftIcon } from "@chakra-ui/icons";
 
 export default function Match({
   match: {
@@ -27,16 +28,26 @@ export default function Match({
     city,
     country,
     region,
+    position,
+    comment,
   },
 }) {
+  console.log(typeof position, position);
   const eloGain = winnerFinalRating - winnerInitialRating;
   const eloLoss = loserInitialRating - loserFinalRating;
+  const positionText = position === 0 ? "Left" : "Right";
+  const positionIcon = position === 0 ? <ArrowLeftIcon /> : <ArrowRightIcon />;
   return (
     <VStack>
       <Flex direction="column">
         <Text color="gray.500" mr={1}>
           {timestamp}
         </Text>
+        <Flex alignItems="center">
+          <Text mr={1}>Winner Position: </Text>
+          {positionIcon}
+        </Flex>
+        {comment !== "" && <Text>{comment}</Text>}
         <HStack spacing={2}>
           <Tag>{sessionId}</Tag>
           <Tag>{voterIp}</Tag>
