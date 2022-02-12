@@ -1,4 +1,5 @@
 import Butterfly from "../components/Butterfly.react";
+import Timestamp from "../components/Timestamp.react";
 import {
   Flex,
   Tag,
@@ -32,7 +33,6 @@ export default function Match({
     comment,
   },
 }) {
-  console.log(typeof position, position);
   const eloGain = winnerFinalRating - winnerInitialRating;
   const eloLoss = loserInitialRating - loserFinalRating;
   const positionText = position === 0 ? "Left" : "Right";
@@ -40,9 +40,7 @@ export default function Match({
   return (
     <VStack>
       <Flex direction="column">
-        <Text color="gray.500" mr={1}>
-          {timestamp}
-        </Text>
+        <Timestamp dateString={timestamp} />
         <Flex alignItems="center">
           <Text mr={1}>Winner Position: </Text>
           {positionIcon}

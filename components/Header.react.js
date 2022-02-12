@@ -26,6 +26,16 @@ export default function Header() {
         <NextLink href="/vote" passHref={true}>
           <Link color={getColor("/vote")}>Vote</Link>
         </NextLink>
+        {isDev && (
+          <>
+            <NextLink href="/matches" passHref={true}>
+              <Link color={getColor("/matches")}>Matches</Link>
+            </NextLink>
+            <NextLink href="/session_frauds" passHref={true}>
+              <Link color={getColor("/session_frauds")}>Session Frauds</Link>
+            </NextLink>
+          </>
+        )}
       </HStack>
       {isDev && (
         <Flex mt={4} direction="column">

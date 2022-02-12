@@ -41,6 +41,17 @@ export function getMatches({ callback }) {
     .catch((error) => console.log(error));
 }
 
+export function getSessionFrauds({ callback }) {
+  const response = axios({
+    method: "get",
+    url: "/api/session_frauds",
+  })
+    .then((response) => {
+      return callback(response.data);
+    })
+    .catch((error) => console.log(error));
+}
+
 export function getIp({ callback }) {
   const response = axios({
     method: "get",
