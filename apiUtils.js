@@ -30,10 +30,11 @@ export function getLeaderboard({ callback }) {
     .catch((error) => console.log(error));
 }
 
-export function getMatches({ callback }) {
+export function getMatches({ callback, sessionID }) {
   const response = axios({
     method: "get",
     url: "/api/matches",
+    params: { session_id: sessionID },
   })
     .then((response) => {
       return callback(response.data);

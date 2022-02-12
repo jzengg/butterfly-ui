@@ -6,6 +6,9 @@ import {
   Flex,
   Heading,
   OrderedList,
+  Input,
+  Button,
+  Text,
   ListItem,
   Image,
   HStack,
@@ -22,6 +25,20 @@ export default function Matches() {
     getMatches({ callback: setData });
   }, []);
   const matches = data?.matches ?? [];
+  const [sessionID, setSessionID] = useState("");
+  const handleFilter = () => {
+    getMatches({
+      callback: setData,
+      sessionID: sessionID === "" ? null : sessionID,
+    });
+  };
+  const resetFilter = () => {
+    setSessionID("");
+    getMatches({ callback: setData, sessionID: null });
+  };
+  const handleChange = (event) => {
+    setSessionID(event.target.value);
+  };
   const isDev = useIsDev();
   if (!isDev) {
     return null;
@@ -32,6 +49,20 @@ export default function Matches() {
       <Heading size="lg" mb={2}>
         Matches
       </Heading>
+      <Input
+        mb={1}
+        width={400}
+        value={sessionID}
+        onChange={handleChange}
+        placeholder="Filter matches by session id"
+        size="sm"
+      />
+      <Flex>
+        <Button mr={2} onClick={handleFilter}>
+          Filter
+        </Button>
+        <Button onClick={resetFilter}>Reset</Button>
+      </Flex>
       <VStack>
         <OrderedList>
           {matches.map((match, index) => (
