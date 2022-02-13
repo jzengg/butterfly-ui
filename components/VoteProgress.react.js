@@ -11,10 +11,14 @@ import {
 } from "@chakra-ui/react";
 import { getMatchup } from "../apiUtils";
 import { useRecoilValue } from "recoil";
-import { numVotesState } from "../atoms";
+import { numVotesState, isWorkerState } from "../atoms";
 
 export default function VoteProgress() {
   const numVotes = useRecoilValue(numVotesState);
+  const isWorker = useRecoilValue(isWorkerState);
+  const completionText = isWorker
+    ? "Get to 100% to complete the session"
+    : "Get to 100% to see the leaderboard!";
   if (numVotes >= 100) {
     return (
       <Flex>
@@ -29,7 +33,7 @@ export default function VoteProgress() {
     <Stat>
       <StatLabel>Vote Progress</StatLabel>
       <Progress value={numVotes} />
-      <StatHelpText>Get to 100% to see the leaderboard!</StatHelpText>
+      <StatHelpText>{completionText}</StatHelpText>
     </Stat>
   );
 }

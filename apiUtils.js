@@ -19,6 +19,16 @@ export function createMatchupResult({ data, callback }) {
     .catch((error) => console.log(error));
 }
 
+export function createWorker({ data, callback }) {
+  const response = axios({
+    method: "post",
+    url: "/api/worker",
+    data,
+  })
+    .then((response) => callback(response.data))
+    .catch((error) => console.log(error));
+}
+
 export function getLeaderboard({ callback }) {
   const response = axios({
     method: "get",

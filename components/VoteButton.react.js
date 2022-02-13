@@ -1,8 +1,9 @@
 import { Button } from "@chakra-ui/react";
 import useSessionId from "../hooks/useSessionId";
-import { numVotesState } from "../atoms";
-import { useRecoilState } from "recoil";
+import { numVotesState, isWorkerState } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { createMatchupResult, getIp } from "../apiUtils";
+import { useRouter } from "next/router";
 
 export default function VoteButton({
   winnerId,
@@ -12,6 +13,8 @@ export default function VoteButton({
 }) {
   const [sessionId] = useSessionId();
   const [numVotes, setNumVotes] = useRecoilState(numVotesState);
+  const isWorker = useRecoilValue(isWorkerState);
+  const router = useRouter();
 
   const handleVote = () => {
     getIp({
@@ -29,7 +32,11 @@ export default function VoteButton({
           },
           callback: () => {
             setNumVotes(numVotes + 1);
-            refreshMatchup();
+            if (isWorker && numVotes === 99) {
+              router.push("/turk_completed");
+            } else {
+              refreshMatchup();
+            }
           },
         });
       },
