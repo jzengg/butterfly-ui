@@ -1,4 +1,5 @@
 import Timestamp from "../components/Timestamp.react";
+import SessionIdentifier from "../components/SessionIdentifier.react";
 import {
   Flex,
   Tag,
@@ -29,16 +30,7 @@ export default function SessionFraud({
       <Flex direction="column">
         <Timestamp dateString={timestamp} />
         <HStack spacing={2}>
-          <Flex>
-            <Text mr={1}>Session ID</Text>
-            <Tag>{sessionId}</Tag>
-          </Flex>
-          {workerId != null && (
-            <Flex>
-              <Text mr={1}>Worker ID</Text>
-              <Tag>{workerId}</Tag>
-            </Flex>
-          )}
+          <SessionIdentifier sessionId={sessionId} workerId={workerId} />
         </HStack>
         <StatGroup>
           <Stat>

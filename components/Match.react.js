@@ -1,5 +1,6 @@
 import Butterfly from "../components/Butterfly.react";
 import Timestamp from "../components/Timestamp.react";
+import SessionIdentifier from "../components/SessionIdentifier.react";
 import {
   Flex,
   Tag,
@@ -25,6 +26,7 @@ export default function Match({
     winner_initial_rating: winnerInitialRating,
     session_id: sessionId,
     voter_ip: voterIp,
+    worker_id: workerId,
     timestamp,
     city,
     country,
@@ -45,9 +47,13 @@ export default function Match({
           <Text mr={1}>Winner Position: </Text>
           {positionIcon}
         </Flex>
-        {comment !== "" && <Text>{comment}</Text>}
+        <SessionIdentifier sessionId={sessionId} workerId={workerId} />
+        {comment !== "" && (
+          <Text color="gray.500" maxWidth={400}>
+            {comment}
+          </Text>
+        )}
         <HStack spacing={2}>
-          <Tag>{sessionId}</Tag>
           <Tag>{voterIp}</Tag>
           <Tag>{city}</Tag>
           <Tag>{region}</Tag>
