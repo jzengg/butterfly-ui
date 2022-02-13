@@ -1,5 +1,6 @@
 import Candidate from "../components/Candidate.react";
 import NextLink from "next/link";
+import useGetHrefWithQuery from "../hooks/useGetHrefWithQuery";
 import {
   Text,
   Link,
@@ -14,6 +15,7 @@ import { useRecoilValue } from "recoil";
 import { numVotesState, isWorkerState } from "../atoms";
 
 export default function VoteProgress() {
+  const getHref = useGetHrefWithQuery();
   const numVotes = useRecoilValue(numVotesState);
   const isWorker = useRecoilValue(isWorkerState);
   const completionText = isWorker
@@ -23,7 +25,7 @@ export default function VoteProgress() {
     return (
       <Flex>
         <Text mr={1}>Thank you for voting {numVotes} times!</Text>
-        <NextLink m href="/leaderboard" passHref={true}>
+        <NextLink m href={getHref("/leaderboard")} passHref={true}>
           <Link color="orange.300">See the Leaderboard</Link>
         </NextLink>
       </Flex>

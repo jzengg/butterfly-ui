@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { forwardRef } from "react";
 import { numVotesState, isWorkerState } from "../atoms";
 import useSessionId from "../hooks/useSessionId";
+import useGetHrefWithQuery from "../hooks/useGetHrefWithQuery";
 import { useRecoilValue } from "recoil";
 import { clearLocalStorage } from "../apiUtils";
 import useIsDev from "../hooks/useIsDev";
@@ -17,6 +18,8 @@ export default function Header() {
     const color = router.asPath === href ? "teal.300" : "teal.600";
     return color;
   }
+  const getHref = useGetHrefWithQuery();
+
   const isWorkerPage = router.asPath === "/turk";
   const shouldShowNavigation = !isWorkerPage && !isWorker;
 
@@ -25,27 +28,27 @@ export default function Header() {
     <Flex direction="column">
       <HStack>
         {shouldShowNavigation && (
-          <NextLink href="/" passHref={true}>
+          <NextLink href={getHref("/")} passHref={true}>
             <Link color={getColor("/")}>Home</Link>
           </NextLink>
         )}
         {shouldShowNavigation && (
-          <NextLink href="/vote" passHref={true}>
+          <NextLink href={getHref("/vote")} passHref={true}>
             <Link color={getColor("/vote")}>Vote</Link>
           </NextLink>
         )}
         {isDev && (
           <>
-            <NextLink href="/matches" passHref={true}>
+            <NextLink href={getHref("/matches")} passHref={true}>
               <Link color={getColor("/matches")}>Matches</Link>
             </NextLink>
-            <NextLink href="/session_frauds" passHref={true}>
+            <NextLink href={getHref("/session_frauds")} passHref={true}>
               <Link color={getColor("/session_frauds")}>Session Frauds</Link>
             </NextLink>
-            <NextLink href="/turk" passHref={true}>
+            <NextLink href={getHref("/turk")} passHref={true}>
               <Link color={getColor("/turk")}>Turk Landing</Link>
             </NextLink>
-            <NextLink href="/turk_completed" passHref={true}>
+            <NextLink href={getHref("/turk_completed")} passHref={true}>
               <Link color={getColor("/turk_completed")}>Turk Completed</Link>
             </NextLink>
           </>

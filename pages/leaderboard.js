@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Butterfly from "../components/Butterfly.react";
+import useGetHrefWithQuery from "../hooks/useGetHrefWithQuery";
 import {
   Center,
   Flex,
@@ -22,13 +23,14 @@ export default function Leaderboard() {
     getLeaderboard({ callback: setData });
   }, []);
   const butterflies = data?.leaderboard ?? [];
+  const getHref = useGetHrefWithQuery();
 
   return (
     <Flex alignItems="center" direction="column">
       <Heading size="lg" mb={2}>
         Leaderboard
       </Heading>
-      <NextLink href="/vote" passHref={true}>
+      <NextLink href={getHref("/vote")} passHref={true}>
         <Heading mb={4} size="md">
           <Link color="teal.500">Start Voting</Link>
         </Heading>
