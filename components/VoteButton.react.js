@@ -33,7 +33,7 @@ export default function VoteButton({
           callback: () => {
             setNumVotes(numVotes + 1);
             if (isWorker && numVotes === 99) {
-              router.push("/turk_completed");
+              router.push({ pathname: "/turk_completed", query: router.query });
             } else {
               refreshMatchup();
             }

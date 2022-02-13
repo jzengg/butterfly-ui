@@ -16,7 +16,7 @@ export default function Turk() {
     createWorker({
       callback: () => {
         setIsWorkerState(true);
-        router.push("/vote");
+        router.push({ pathname: "/vote", query: router.query });
       },
       data: { worker_id: workerID, session_id: sessionID },
     });
