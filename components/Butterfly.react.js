@@ -3,7 +3,7 @@ import useIsDev from "../hooks/useIsDev";
 
 export default function Butterfly({
   butterfly: { name, rating, image_url: imageUrl, id },
-  imgSize = 725,
+  imgSize = 726,
 }) {
   const isDev = useIsDev();
   return (
