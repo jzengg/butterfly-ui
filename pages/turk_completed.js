@@ -1,15 +1,20 @@
-import useSessionId from "../hooks/useSessionId";
-import { Heading, Tag, Flex, Text } from "@chakra-ui/react";
+import Leaderboard from "../pages/leaderboard";
+import { Heading, Tag, Flex, Text, Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function TurkCompleted() {
-  const sessionID = useSessionId();
+  const router = useRouter();
+  const { completionCode } = router.query;
   return (
     <Flex direction="column">
       <Heading size="lg" mb={2}>
         Session Complete
       </Heading>
       <Text>Completion Code</Text>
-      <Tag>{sessionID}</Tag>
+      <Tag>{completionCode}</Tag>
+      <Box mt={8}>
+        <Leaderboard />
+      </Box>
     </Flex>
   );
 }

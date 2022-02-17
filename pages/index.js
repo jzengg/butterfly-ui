@@ -11,7 +11,7 @@ export default function Home() {
         <Text>Introduction goes here</Text>
       </Container>
       <HStack spacing={8} justifyContent="center">
-        <NextLink href={getHref("/vote")} passHref={true}>
+        <NextLink href={getHref("/survey")} passHref={true}>
           <Heading size="md">
             <Link color="teal.500">Start Voting</Link>
           </Heading>

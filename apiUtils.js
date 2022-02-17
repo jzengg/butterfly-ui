@@ -75,6 +75,8 @@ export function getIp({ callback }) {
 }
 
 export function clearLocalStorage() {
+  console.log("clearing local");
   localStorage.removeItem("hotbutterfly-sessionid");
   localStorage.removeItem("hotbutterfly-numvotes");
+  localStorage.removeItem("hotbutterfly-isworker");
 }

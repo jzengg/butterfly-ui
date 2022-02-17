@@ -24,6 +24,9 @@ export default function Header() {
   const shouldShowNavigation = !isWorkerPage && !isWorker;
 
   const isDev = useIsDev();
+  if (!isDev) {
+    return <></>;
+  }
   return (
     <Flex direction="column">
       <HStack>
@@ -33,8 +36,8 @@ export default function Header() {
           </NextLink>
         )}
         {shouldShowNavigation && (
-          <NextLink href={getHref("/vote")} passHref={true}>
-            <Link color={getColor("/vote")}>Vote</Link>
+          <NextLink href={getHref("/survey")} passHref={true}>
+            <Link color={getColor("/survey")}>Vote</Link>
           </NextLink>
         )}
         {isDev && (

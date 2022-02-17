@@ -4,6 +4,7 @@ import useIsDev from "../hooks/useIsDev";
 export default function Butterfly({
   butterfly: { name, rating, image_url: imageUrl, id },
   imgSize = 726,
+  showName = false,
 }) {
   const isDev = useIsDev();
   return (
@@ -12,7 +13,7 @@ export default function Butterfly({
         boxSize={[imgSize / 2.7, imgSize / 2.5, imgSize / 2, imgSize]}
         src={imageUrl}
       />
-      <Flex>{name}</Flex>
+      {showName && <Flex>{name}</Flex>}
       {isDev && (
         <>
           <Flex>ID: {id}</Flex>

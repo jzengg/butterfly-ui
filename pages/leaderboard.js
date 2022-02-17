@@ -30,17 +30,16 @@ export default function Leaderboard() {
       <Heading size="lg" mb={2}>
         Leaderboard
       </Heading>
-      <NextLink href={getHref("/vote")} passHref={true}>
-        <Heading mb={4} size="md">
-          <Link color="teal.500">Start Voting</Link>
-        </Heading>
-      </NextLink>
       <VStack>
         <OrderedList>
           {butterflies.map((butterfly, index) => (
             <ListItem key={index}>
               <HStack p={5} spacing={[10, 20, 30, 50]}>
-                <Butterfly butterfly={butterfly} imgSize={200} />
+                <Butterfly
+                  butterfly={butterfly}
+                  imgSize={500}
+                  showName={true}
+                />
               </HStack>
             </ListItem>
           ))}

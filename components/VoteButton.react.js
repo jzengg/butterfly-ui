@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import useSessionId from "../hooks/useSessionId";
 import { numVotesState, isWorkerState } from "../atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { createMatchupResult, getIp } from "../apiUtils";
+import { createMatchupResult, getIp, clearLocalStorage } from "../apiUtils";
 import { useRouter } from "next/router";
 
 export default function VoteButton({
@@ -31,10 +31,15 @@ export default function VoteButton({
             region,
           },
           callback: () => {
-            setNumVotes(numVotes + 1);
-            if (isWorker && numVotes === 99) {
-              router.push({ pathname: "/turk_completed", query: router.query });
+            if (isWorker && numVotes >= 99) {
+              clearLocalStorage();
+              const completionCode = sessionId;
+              router.push({
+                pathname: "/turk_completed",
+                query: { ...router.query, completionCode },
+              });
             } else {
+              setNumVotes(numVotes + 1);
               refreshMatchup();
             }
           },
@@ -45,7 +50,7 @@ export default function VoteButton({
 
   return (
     <Button colorScheme="blue" size="lg" onClick={handleVote}>
-      Vote
+      Like
     </Button>
   );
 }
