@@ -61,7 +61,14 @@ export default function Header() {
         <Flex mt={4} direction="column">
           <Text>Num Votes: {numVotes}</Text>
           <Text>Session ID: {sessionId}</Text>
-          <Button width="50px" size="xs" onClick={clearLocalStorage}>
+          <Button
+            width="50px"
+            size="xs"
+            onClick={() => {
+              clearLocalStorage();
+              router.reload();
+            }}
+          >
             Reset
           </Button>
         </Flex>

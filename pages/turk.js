@@ -60,7 +60,9 @@ export default function Turk() {
           butterfly would appear as real size as they would show up in nature!
         </ListItem>
         <ListItem>
-          {"At the end of the survey, you'll get to see a 'leader board' and butterfly names -- just for fun."}
+          {
+            "At the end of the survey, you'll get to see a 'leader board' and butterfly names -- just for fun."
+          }
         </ListItem>
         <ListItem>Hope you enjoy this!</ListItem>
       </OrderedList>

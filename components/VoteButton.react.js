@@ -17,33 +17,25 @@ export default function VoteButton({
   const router = useRouter();
 
   const handleVote = () => {
-    getIp({
-      callback: ({ city, country, region, ip: voter_ip }) => {
-        createMatchupResult({
-          data: {
-            winner_id: winnerId,
-            loser_id: loserId,
-            session_id: sessionId,
-            position,
-            voter_ip,
-            city,
-            country,
-            region,
-          },
-          callback: () => {
-            if (isWorker && numVotes >= 99) {
-              clearLocalStorage();
-              const completionCode = sessionId;
-              router.push({
-                pathname: "/turk_completed",
-                query: { ...router.query, completionCode },
-              });
-            } else {
-              setNumVotes(numVotes + 1);
-              refreshMatchup();
-            }
-          },
-        });
+    createMatchupResult({
+      data: {
+        winner_id: winnerId,
+        loser_id: loserId,
+        session_id: sessionId,
+        position,
+      },
+      callback: () => {
+        if (isWorker && numVotes >= 99) {
+          clearLocalStorage();
+          const completionCode = sessionId;
+          router.push({
+            pathname: "/turk_completed",
+            query: { ...router.query, completionCode },
+          });
+        } else {
+          setNumVotes(numVotes + 1);
+          refreshMatchup();
+        }
       },
     });
   };
