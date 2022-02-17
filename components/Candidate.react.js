@@ -18,8 +18,8 @@ export default function Candidate({
   const playerId = player.id;
   return (
     <VStack>
-      <Butterfly butterfly={player} />
       <VoteButton
+        butterfly={player}
         position={position}
         refreshMatchup={refreshMatchup}
         winnerId={playerId}

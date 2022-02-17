@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import useSessionId from "../hooks/useSessionId";
+import Butterfly from "../components/Butterfly.react";
 import { numVotesState, isWorkerState } from "../atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { createMatchupResult, getIp, clearLocalStorage } from "../apiUtils";
@@ -10,6 +11,7 @@ export default function VoteButton({
   loserId,
   refreshMatchup,
   position,
+  butterfly,
 }) {
   const [sessionId] = useSessionId();
   const [numVotes, setNumVotes] = useRecoilState(numVotesState);
@@ -41,8 +43,11 @@ export default function VoteButton({
   };
 
   return (
-    <Button colorScheme="blue" size="lg" onClick={handleVote}>
-      Like
-    </Button>
+    <>
+      <Butterfly onClick={handleVote} butterfly={butterfly} />
+      <Button colorScheme="blue" size="lg" onClick={handleVote}>
+        Like
+      </Button>
+    </>
   );
 }
