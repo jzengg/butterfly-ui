@@ -45,27 +45,24 @@ export default function Turk() {
         Instructions
       </Heading>
       <OrderedList mb={4}>
-        <Text>
-          <ListItem>
-            Please enter your Worker ID to start. At the end of the survey you
-            will receive your completion code. Enter the code back to your task
-            page.
-          </ListItem>
-          <ListItem> There are 100 comparisons in this survey.</ListItem>
-          <ListItem>
-            For each comparison, go with your gut feeling, choose the butterfly
-            you like better!
-          </ListItem>
-          <ListItem>
-            If you pull up full-screen, 1920x1080 on a 21 inch monitor, these
-            butterfly would appear as real size as they would show up in nature!
-          </ListItem>
-          <ListItem>
-            At the end of the survey, you'll get to see a "leader board" and
-            butterfly names -- just for fun.
-          </ListItem>
-          <ListItem> Hope you enjoy this!</ListItem>
-        </Text>
+        <ListItem>
+          Please enter your Worker ID to start. At the end of the survey you
+          will receive your completion code. Enter the code back to your task
+          page.
+        </ListItem>
+        <ListItem> There are 100 comparisons in this survey.</ListItem>
+        <ListItem>
+          For each comparison, go with your gut feeling, choose the butterfly
+          you like better!
+        </ListItem>
+        <ListItem>
+          If you pull up full-screen, 1920x1080 on a 21 inch monitor, these
+          butterfly would appear as real size as they would show up in nature!
+        </ListItem>
+        <ListItem>
+          {"At the end of the survey, you'll get to see a 'leader board' and butterfly names -- just for fun."}
+        </ListItem>
+        <ListItem>Hope you enjoy this!</ListItem>
       </OrderedList>
 
       <Heading mb={2} size="md">
@@ -90,22 +87,4 @@ export default function Turk() {
       </Button>
     </Flex>
   );
-}
-
-function shouldShowToast(numVotes) {
-  if (numVotes === 0) {
-    return false;
-  }
-  if (numVotes <= 30) {
-    return numVotes % 10 === 0;
-  } else {
-    return numVotes % 50 === 0;
-  }
-}
-
-function getToastTitle(numVotes) {
-  if (numVotes < 50) {
-    return "Thank you!";
-  }
-  return "Amazing!";
 }
