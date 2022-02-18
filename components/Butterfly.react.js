@@ -16,7 +16,7 @@ export default function Butterfly({
         boxSize={[imgSize / 2.7, imgSize / 2.5, imgSize / 2, imgSize]}
         src={imageUrl}
       />
-      {showName && <Flex>{name}</Flex>}
+      {(isDev || showName) && <Flex>{name}</Flex>}
       {isDev && (
         <>
           <Flex>ID: {id}</Flex>

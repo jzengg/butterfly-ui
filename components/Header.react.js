@@ -19,10 +19,6 @@ export default function Header() {
     return color;
   }
   const getHref = useGetHrefWithQuery();
-
-  const isWorkerPage = router.asPath === "/turk";
-  const shouldShowNavigation = !isWorkerPage && !isWorker;
-
   const isDev = useIsDev();
   if (!isDev) {
     return <></>;
@@ -30,52 +26,42 @@ export default function Header() {
   return (
     <Flex direction="column">
       <HStack>
-        {shouldShowNavigation && (
-          <NextLink href={getHref("/")} passHref={true}>
-            <Link color={getColor("/")}>Home</Link>
-          </NextLink>
-        )}
-        {shouldShowNavigation && (
-          <NextLink href={getHref("/survey")} passHref={true}>
-            <Link color={getColor("/survey")}>Vote</Link>
-          </NextLink>
-        )}
-        {isDev && (
-          <>
-            <NextLink href={getHref("/matches")} passHref={true}>
-              <Link color={getColor("/matches")}>Matches</Link>
-            </NextLink>
-            <NextLink href={getHref("/leaderboard")} passHref={true}>
-              <Link color={getColor("/leaderboard")}>Leaderboard</Link>
-            </NextLink>
-            <NextLink href={getHref("/session_frauds")} passHref={true}>
-              <Link color={getColor("/session_frauds")}>Session Frauds</Link>
-            </NextLink>
-            <NextLink href={getHref("/turk")} passHref={true}>
-              <Link color={getColor("/turk")}>Turk Landing</Link>
-            </NextLink>
-            <NextLink href={getHref("/turk_completed")} passHref={true}>
-              <Link color={getColor("/turk_completed")}>Turk Completed</Link>
-            </NextLink>
-          </>
-        )}
+        <NextLink href={getHref("/")} passHref={true}>
+          <Link color={getColor("/")}>Home</Link>
+        </NextLink>
+        <NextLink href={getHref("/survey")} passHref={true}>
+          <Link color={getColor("/survey")}>Vote</Link>
+        </NextLink>
+        <NextLink href={getHref("/matches")} passHref={true}>
+          <Link color={getColor("/matches")}>Matches</Link>
+        </NextLink>
+        <NextLink href={getHref("/leaderboard")} passHref={true}>
+          <Link color={getColor("/leaderboard")}>Leaderboard</Link>
+        </NextLink>
+        <NextLink href={getHref("/session_frauds")} passHref={true}>
+          <Link color={getColor("/session_frauds")}>Session Frauds</Link>
+        </NextLink>
+        <NextLink href={getHref("/turk")} passHref={true}>
+          <Link color={getColor("/turk")}>Turk Landing</Link>
+        </NextLink>
+        <NextLink href={getHref("/turk_completed")} passHref={true}>
+          <Link color={getColor("/turk_completed")}>Turk Completed</Link>
+        </NextLink>
       </HStack>
-      {isDev && (
-        <Flex mt={4} direction="column">
-          <Text>Num Votes: {numVotes}</Text>
-          <Text>Session ID: {sessionId}</Text>
-          <Button
-            width="50px"
-            size="xs"
-            onClick={() => {
-              clearLocalStorage();
-              router.reload();
-            }}
-          >
-            Reset
-          </Button>
-        </Flex>
-      )}
+      <Flex mt={4} direction="column">
+        <Text>Num Votes: {numVotes}</Text>
+        <Text>Session ID: {sessionId}</Text>
+        <Button
+          width="50px"
+          size="xs"
+          onClick={() => {
+            clearLocalStorage();
+            router.reload();
+          }}
+        >
+          Reset
+        </Button>
+      </Flex>
     </Flex>
   );
 }
