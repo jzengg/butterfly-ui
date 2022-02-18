@@ -2,7 +2,7 @@ import { Flex, Heading, Link, HStack, Text, Button } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { forwardRef } from "react";
-import { numVotesState, isWorkerState } from "../atoms";
+import { numVotesState, isWorkerState, workerIDState } from "../atoms";
 import useSessionId from "../hooks/useSessionId";
 import useGetHrefWithQuery from "../hooks/useGetHrefWithQuery";
 import { useRecoilValue } from "recoil";
@@ -13,6 +13,7 @@ export default function Header() {
   const [sessionId] = useSessionId();
   const numVotes = useRecoilValue(numVotesState);
   const isWorker = useRecoilValue(isWorkerState);
+  const workerID = useRecoilValue(workerIDState);
   const router = useRouter();
   function getColor(href) {
     const color = router.asPath === href ? "teal.300" : "teal.600";
@@ -51,6 +52,7 @@ export default function Header() {
       <Flex mt={4} direction="column">
         <Text>Num Votes: {numVotes}</Text>
         <Text>Session ID: {sessionId}</Text>
+        {workerID != null && <Text>Worker ID: {workerID}</Text>}
         <Button
           width="50px"
           size="xs"
