@@ -29,10 +29,11 @@ export function createWorker({ data, callback }) {
     .catch((error) => console.log(error));
 }
 
-export function getLeaderboard({ callback }) {
+export function getLeaderboard({ callback, count = 20, format }) {
   const response = axios({
     method: "get",
     url: "/api/leaderboard",
+    params: { count, format },
   })
     .then((response) => {
       return callback(response.data);
@@ -40,11 +41,11 @@ export function getLeaderboard({ callback }) {
     .catch((error) => console.log(error));
 }
 
-export function getMatches({ callback, sessionID }) {
+export function getMatches({ callback, sessionID, count, format }) {
   const response = axios({
     method: "get",
     url: "/api/matches",
-    params: { session_id: sessionID },
+    params: { session_id: sessionID, count, format },
   })
     .then((response) => {
       return callback(response.data);
@@ -52,10 +53,11 @@ export function getMatches({ callback, sessionID }) {
     .catch((error) => console.log(error));
 }
 
-export function getSessionFrauds({ callback }) {
+export function getSessionFrauds({ callback, count = 200, format }) {
   const response = axios({
     method: "get",
     url: "/api/session_frauds",
+    params: { count, format },
   })
     .then((response) => {
       return callback(response.data);
@@ -75,8 +77,8 @@ export function getIp({ callback }) {
 }
 
 export function clearLocalStorage() {
-  console.log("clearing local");
   localStorage.removeItem("hotbutterfly-sessionid");
   localStorage.removeItem("hotbutterfly-numvotes");
   localStorage.removeItem("hotbutterfly-isworker");
+  localStorage.removeItem("hotbutterfly-workerid");
 }

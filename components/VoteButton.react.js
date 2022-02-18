@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import useSessionId from "../hooks/useSessionId";
 import Butterfly from "../components/Butterfly.react";
-import { numVotesState, isWorkerState } from "../atoms";
+import { numVotesState, isWorkerState, workerIDState } from "../atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { createMatchupResult, getIp, clearLocalStorage } from "../apiUtils";
 import { useRouter } from "next/router";
@@ -16,6 +16,7 @@ export default function VoteButton({
   const [sessionId] = useSessionId();
   const [numVotes, setNumVotes] = useRecoilState(numVotesState);
   const isWorker = useRecoilValue(isWorkerState);
+  const workerID = useRecoilValue(workerIDState);
   const router = useRouter();
 
   const handleVote = () => {
@@ -24,6 +25,7 @@ export default function VoteButton({
         winner_id: winnerId,
         loser_id: loserId,
         session_id: sessionId,
+        worker_id: workerID,
         position,
       },
       callback: () => {

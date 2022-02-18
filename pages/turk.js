@@ -12,7 +12,7 @@ import {
 import { createWorker } from "../apiUtils";
 import useSessionId from "../hooks/useSessionId";
 import { useRouter } from "next/router";
-import { isWorkerState } from "../atoms";
+import { isWorkerState, workerIDState } from "../atoms";
 import { useSetRecoilState } from "recoil";
 
 export default function Turk() {
@@ -20,10 +20,12 @@ export default function Turk() {
   const router = useRouter();
   const [sessionID] = useSessionId();
   const setIsWorkerState = useSetRecoilState(isWorkerState);
+  const setWorkerIDState = useSetRecoilState(workerIDState);
   const handleChange = (event) => setWorkerID(event.target.value);
   const handleSubmit = () => {
     createWorker({
       callback: () => {
+        setWorkerIDState(workerID);
         setIsWorkerState(true);
         router.push({ pathname: "/survey", query: router.query });
       },

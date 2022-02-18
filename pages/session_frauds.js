@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import SessionFraud from "../components/SessionFraud.react";
+import DownloadCSV from "../components/DownloadCSV.react";
 import useIsDev from "../hooks/useIsDev";
 import {
   Center,
@@ -26,12 +27,16 @@ export default function SessionFrauds() {
   if (!isDev) {
     return null;
   }
+  const getCSVData = useCallback(({ callback }) => {
+    getSessionFrauds({ callback, count: 10000000, format: "csv" });
+  });
 
   return (
     <Flex alignItems="center" direction="column">
       <Heading size="lg" mb={2}>
         Session Frauds
       </Heading>
+      <DownloadCSV getData={getCSVData} filename="session_frauds" />
       <VStack>
         <OrderedList>
           {sessionFrauds.map((sessionFraud, index) => (

@@ -45,6 +45,9 @@ export default function Header() {
             <NextLink href={getHref("/matches")} passHref={true}>
               <Link color={getColor("/matches")}>Matches</Link>
             </NextLink>
+            <NextLink href={getHref("/leaderboard")} passHref={true}>
+              <Link color={getColor("/leaderboard")}>Leaderboard</Link>
+            </NextLink>
             <NextLink href={getHref("/session_frauds")} passHref={true}>
               <Link color={getColor("/session_frauds")}>Session Frauds</Link>
             </NextLink>
