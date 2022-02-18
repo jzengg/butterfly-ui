@@ -24,13 +24,14 @@ export default function SessionFrauds() {
   }, []);
   const sessionFrauds = data?.session_frauds ?? [];
   const isDev = useIsDev();
+
+  const getCSVData = useCallback(({ callback }) => {
+    getSessionFrauds({ callback, count: 10000000, format: "csv" });
+  }, []);
+
   if (!isDev) {
     return null;
   }
-  const getCSVData = useCallback(({ callback }) => {
-    getSessionFrauds({ callback, count: 10000000, format: "csv" });
-  });
-
   return (
     <Flex alignItems="center" direction="column">
       <Heading size="lg" mb={2}>

@@ -29,7 +29,7 @@ export default function Leaderboard() {
   const getHref = useGetHrefWithQuery();
   const getCSVData = useCallback(({ callback }) => {
     getLeaderboard({ callback, count: 10000000, format: "csv" });
-  });
+  }, []);
 
   return (
     <Flex alignItems="center" direction="column">

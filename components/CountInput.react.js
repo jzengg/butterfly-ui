@@ -11,7 +11,7 @@ export default function CountInput({ count, setCount, defaultCount }) {
         setValue(valueAsNumber);
       }
     },
-    [setValue, defaultCount]
+    [setValue]
   );
   return (
     <>

@@ -28,7 +28,7 @@ export default function Matches() {
   const [count, setCount] = useState(DEFAULT_COUNT);
   useEffect(() => {
     getMatches({ callback: setData, count });
-  }, [setData, count, getMatches]);
+  }, [setData, count]);
   const matches = data?.matches ?? [];
   const [sessionID, setSessionID] = useState("");
   const handleFilter = () => {
@@ -48,7 +48,7 @@ export default function Matches() {
 
   const getCSVData = useCallback(({ callback }) => {
     getMatches({ callback, count: 10000000, format: "csv" });
-  });
+  }, []);
   const isDev = useIsDev();
   if (!isDev) {
     return null;
