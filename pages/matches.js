@@ -26,13 +26,9 @@ const DEFAULT_COUNT = 50;
 export default function Matches() {
   const [data, setData] = useState();
   const [count, setCount] = useState(DEFAULT_COUNT);
-  useEffect(() => {
-    getMatches({ callback: setData, count });
-  }, [setData, count]);
   const matches = data?.matches ?? [];
   const [filterValue, setFilterValue] = useState("");
   const handleFilter = useCallback(() => {
-    console.log("handling");
     let filters = {};
     if (filterValue !== "") {
       if (filterValue.match(/\w+-\w+-\w+-\w+-\w+/)) {
@@ -47,6 +43,9 @@ export default function Matches() {
       count,
     });
   }, [setData, count, filterValue]);
+  useEffect(() => {
+    handleFilter();
+  }, [handleFilter]);
   const resetFilter = useCallback(() => {
     setFilterValue("");
     getMatches({ callback: setData, count });
