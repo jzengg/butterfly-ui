@@ -1,10 +1,16 @@
 import { Button } from "@chakra-ui/react";
 import useSessionId from "../hooks/useSessionId";
 import Butterfly from "../components/Butterfly.react";
-import { numVotesState, isWorkerState, workerIDState } from "../atoms";
+import {
+  numVotesState,
+  isWorkerState,
+  workerIDState,
+  voteIsDisabledState,
+} from "../atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { createMatchupResult, getIp, clearLocalStorage } from "../apiUtils";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 export default function VoteButton({
   winnerId,
@@ -15,11 +21,21 @@ export default function VoteButton({
 }) {
   const [sessionId] = useSessionId();
   const [numVotes, setNumVotes] = useRecoilState(numVotesState);
+  const [isDisabled, setIsDisabled] = useRecoilState(voteIsDisabledState);
   const isWorker = useRecoilValue(isWorkerState);
   const workerID = useRecoilValue(workerIDState);
   const router = useRouter();
+  useEffect(() => {
+    const interval = setTimeout(function () {
+      setIsDisabled(false);
+    }, 1000);
+    return interval;
+  }, [winnerId, loserId]);
 
   const handleVote = () => {
+    if (isDisabled) {
+      return;
+    }
     createMatchupResult({
       data: {
         winner_id: winnerId,
@@ -29,6 +45,7 @@ export default function VoteButton({
         position,
       },
       callback: () => {
+        setIsDisabled(true);
         if (isWorker && numVotes >= 99) {
           clearLocalStorage();
           const completionCode = sessionId;
@@ -46,8 +63,13 @@ export default function VoteButton({
 
   return (
     <>
-      <Butterfly onClick={handleVote} butterfly={butterfly} />
-      <Button colorScheme="blue" size="lg" onClick={handleVote}>
+      <Butterfly butterfly={butterfly} />
+      <Button
+        isDisabled={isDisabled}
+        colorScheme="blue"
+        size="lg"
+        onClick={handleVote}
+      >
         Like
       </Button>
     </>

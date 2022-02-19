@@ -6,6 +6,8 @@ const IS_WORKER_KEY = "hotbutterfly-isworker";
 const IS_WORKER_DEFAULT = false;
 const WORKER_ID_KEY = "hotbutterfly-workerid";
 const WORKER_ID_DEFAULT = null;
+const VOTE_IS_DISABLED_KEY = "hotbutterfly-voteisdisabled";
+const VOTE_IS_DISABLED_DEFAULT = true;
 
 const localStorageEffect =
   (key) =>
@@ -40,4 +42,9 @@ export const workerIDState = atom({
   key: WORKER_ID_KEY,
   default: WORKER_ID_DEFAULT,
   effects: [localStorageEffect(WORKER_ID_KEY)],
+});
+
+export const voteIsDisabledState = atom({
+  key: VOTE_IS_DISABLED_KEY,
+  default: VOTE_IS_DISABLED_DEFAULT,
 });
