@@ -41,11 +41,11 @@ export function getLeaderboard({ callback, count = 20, format }) {
     .catch((error) => console.log(error));
 }
 
-export function getMatches({ callback, sessionID, count, format }) {
+export function getMatches({ callback, sessionID, workerID, count, format }) {
   const response = axios({
     method: "get",
     url: "/api/matches",
-    params: { session_id: sessionID, count, format },
+    params: { session_id: sessionID, worker_id: workerID, count, format },
   })
     .then((response) => {
       return callback(response.data);

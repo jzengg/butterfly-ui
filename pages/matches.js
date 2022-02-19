@@ -30,21 +30,33 @@ export default function Matches() {
     getMatches({ callback: setData, count });
   }, [setData, count]);
   const matches = data?.matches ?? [];
-  const [sessionID, setSessionID] = useState("");
-  const handleFilter = () => {
+  const [filterValue, setFilterValue] = useState("");
+  const handleFilter = useCallback(() => {
+    console.log("handling");
+    let filters = {};
+    if (filterValue !== "") {
+      if (filterValue.match(/\w+-\w+-\w+-\w+-\w+/)) {
+        filters.sessionID = filterValue;
+      } else {
+        filters.workerID = filterValue;
+      }
+    }
     getMatches({
       callback: setData,
-      sessionID: sessionID === "" ? null : sessionID,
+      ...filters,
       count,
     });
-  };
-  const resetFilter = () => {
-    setSessionID("");
-    getMatches({ callback: setData, sessionID: null, count });
-  };
-  const handleChange = (event) => {
-    setSessionID(event.target.value);
-  };
+  }, [setData, count, filterValue]);
+  const resetFilter = useCallback(() => {
+    setFilterValue("");
+    getMatches({ callback: setData, count });
+  }, [setData, setFilterValue, count]);
+  const handleChange = useCallback(
+    (event) => {
+      setFilterValue(event.target.value);
+    },
+    [setFilterValue]
+  );
 
   const getCSVData = useCallback(({ callback }) => {
     getMatches({ callback, count: 10000000, format: "csv" });
@@ -69,9 +81,9 @@ export default function Matches() {
         mt={2}
         mb={1}
         width={400}
-        value={sessionID}
+        value={filterValue}
         onChange={handleChange}
-        placeholder="Filter matches by session id"
+        placeholder="Filter matches by session id or worker id"
         size="sm"
       />
       <Flex>
