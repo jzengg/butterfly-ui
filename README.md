@@ -4,17 +4,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Admin functionality exists to view match records, download CSVs of data, and view rankings.
 
 ## What does the app look like?
-Mturk users are given a link (`/turk`) that takes them to this introduction page
-![Landing Page](readme_static/intro.png "Landing page")
-
-Once they enter their worker ID, they can then begin ranking butterfly pairs
+Users vote for one of two butterflies
 ![Voting](readme_static/survey.png "Voting")
 
-After they have completed their 100 votes, they are given their "completion code" which allows them to validate their task with Amazon as well view the overall ranking of the butterflies at that time
+After 100 votes, a leaderboard with overall ranking of all butterflies is shown. A completion code is generated for compensation with Amazon MTurk
 ![End](readme_static/end.png "End")
-
-See the screen recording for what the flow looks like
-[Video](readme_static/recording.mov)
 
 ## Getting Started
 
