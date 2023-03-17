@@ -10,7 +10,7 @@ Mturk users are given a link (`/turk`) that takes them to this introduction page
 Once they enter their worker ID, they can then begin ranking butterfly pairs
 ![Voting](readme_static/survey.png "Voting")
 
-After they have completed their 100 votes, they are given their "completion code" which allows them to validate their task with Amazon as well as the overall ranking of the butterflies at that time
+After they have completed their 100 votes, they are given their "completion code" which allows them to validate their task with Amazon as well view the overall ranking of the butterflies at that time
 ![End](readme_static/end.png "End")
 
 See the screen recording for what the flow looks like
