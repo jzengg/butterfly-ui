@@ -5,13 +5,13 @@ Admin functionality exists to view match records, download CSVs of data, and vie
 
 ## What does the app look like?
 Mturk users are given a link that takes them to this introduction page (`/turk`)
-[Landing Page](readme_static/intro.png)
+![Landing Page](readme_static/intro.png "Landing page")
 
 Once they enter their worker ID, they can then begin ranking butterfly pairs
-[Voting](readme_static/survey.png)
+![Voting](readme_static/survey.png "Voting")
 
 The whole flow looks like this
-[Video](readme_static/recording.mov)
+![Video](readme_static/recording.mov "Video")
 
 ## Getting Started
 
