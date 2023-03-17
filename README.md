@@ -1,7 +1,17 @@
 # UI overview
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It serves as the frontend for the hotbutterfly project to rank the beauty of butterflies in pairwise contests. Using Next.js's server, we proxy the requests to our [actual backend server](https://github.com/jzengg/hotbutterfly). This web app primarily serves users coming from Amazon's Mechanical Turk (MTurk) marketplace. To that end, the first step before ranking butterflies is a form where users must supply their MTurk information and upon completion of the survey, the app presents a completion code that can be submitted to Amazon which lets us filter out fraudulent users. 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It serves as the frontend for the hotbutterfly project to rank the beauty of butterflies in pairwise contests. Using Next.js's server, we proxy the requests to our [actual backend server](https://github.com/jzengg/hotbutterfly). This web app primarily serves users coming from Amazon's Mechanical Turk (MTurk) marketplace. To that end, the first step before ranking butterflies is a form where users must supply their MTurk information and upon completion of the survey, the app presents a completion code that can be submitted to Amazon which lets us filter out fraudulent users.
 
 Admin functionality exists to view match records, download CSVs of data, and view rankings.
+
+## What does the app look like?
+Mturk users are given a link that takes them to this introduction page (`/turk`)
+[Landing Page](readme_static/intro.png)
+
+Once they enter their worker ID, they can then begin ranking butterfly pairs
+[Voting](readme_static/survey.png)
+
+The whole flow looks like this
+[Video](readme_static/recording.mov)
 
 ## Getting Started
 
